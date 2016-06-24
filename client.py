@@ -20,13 +20,13 @@ key = RSA.generate(1024) #generate pub and priv key
 publickey = key.publickey() # pub key export for exchange
 print('Client: publickey is %s' % key.exportKey())
 
-encrypted = publickey.encrypt(int(input("Type your secret message here: ")), 32)
+encrypted = publickey.encrypt("secret msg", 32)
 
 print('encrypted message:', encrypted) #ciphertext
 
 decrypted = key.decrypt(ast.literal_eval(str(encrypted)))
 
-#print('decrypted', decrypted)
+print('decrypted', decrypted)
 
 
 try:
