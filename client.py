@@ -1,7 +1,8 @@
 import socket
 import Crypto
 from Crypto.PublicKey import RSA
-from Crypto import Random
+#from crypto import Random
+import ast
 
 # Create a TCP/IP socket
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -14,36 +15,19 @@ print('Client: connecting to %s port %s' % server_address)
 sock.connect(server_address)
 
 #RSA Settings
-
-import ast
-
-random_generator = Random.new().read
-key = RSA.generate(1024, random_generator) #generate pub and priv key
+key = RSA.generate(1024) #generate pub and priv key
 
 publickey = key.publickey() # pub key export for exchange
+print('Client: publickey is %s' % key.exportKey())
 
-encrypted = publickey.encrypt('encrypt this message', 32)
-#message to encrypt is in the above line 'encrypt this message'
+encrypted = publickey.encrypt(int(input("Type your secret message here: ")), 32)
 
 print('encrypted message:', encrypted) #ciphertext
-f = open ('encryption.txt', 'w')
-f.write(str(encrypted)) #write ciphertext to file
-f.close()
-
-#decrypted code below
-
-f = open('encryption.txt', 'r')
-message = f.read()
-
 
 decrypted = key.decrypt(ast.literal_eval(str(encrypted)))
 
-print('decrypted', decrypted)
+#print('decrypted', decrypted)
 
-f = open ('encryption.txt', 'w')
-f.write(str(message))
-f.write(str(decrypted))
-f.close()
 
 try:
     # Send data
