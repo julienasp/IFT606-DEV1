@@ -40,7 +40,7 @@ while True:
             print 'Server: received the encrypted message: "%s"' % encryptedData
             if encryptedData:
                 print 'Server: is decrypting the message...'
-                decrypted = key.decrypt(ast.literal_eval(str(encryptedData)))
+                decrypted = key.decrypt(str(encryptedData))
                 print'Server: decrypted data is: %s' % decrypted
             else:
                 print 'Server: no more data from', client_address
