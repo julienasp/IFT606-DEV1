@@ -23,15 +23,17 @@ publickey = key.publickey() # pub key export for exchange
 
 print('Client: the server publickey is %s' % key.exportKey())
 try:
-    # Send data
-    message = raw_input('Please type the message you want to send to the server: ')
-    print('Client: message is "%s"' % message)
-
-    #Encryption
-    encrypted = publickey.encrypt(message,32)
-    print('Client: will send the following encrypted message "%s"' % encrypted[0])
-
-    sock.sendall(encrypted[0])
+    while True:
+        # Send data
+        message = raw_input('Client: Please type the message you want to send to the server or QUIT if you want to exit: ')
+        if message.upper() == 'QUIT':
+            break
+        else:
+            print('Client: message is "%s"' % message)
+            #Encryption
+            encrypted = publickey.encrypt(message,32)
+            print('Client: will send the following encrypted message "%s"' % encrypted[0])
+            sock.sendall(encrypted[0])
 finally:
     print('Client: closing socket')
     sock.close()
