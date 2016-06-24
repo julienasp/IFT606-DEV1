@@ -34,3 +34,20 @@ Libraries utilisés:  pycrypto  (voir https://pypi.python.org/pypi/pycrypto)
 4- Saisir «QUIT» pour fermer la connexion entre le client et le serveur
 
 5- Recommencer à partir de l'étape 2 sur un autre client
+
+#Fonctionnement
+1- Le Serveur démarre, ouvre un port au publique
+
+2- Le Serveur génére sa pair de clé privé/publique
+
+3- Un Client démarre et fait une demande de connexion au Serveur
+
+4- Une fois la connexion établie, le Serveur envoit sa clé publique au Client
+
+5- Le Client récupère la clé publique du serveur et s'en sert pour encrypter ses messages
+
+6- Le Client envoit le nombre de message encrypté souhaitez
+
+7- Le Serveur utilise sa clé privé pour déchiffrer les messages envoyés par le Client
+
+8- Serveur et Client vécurrent heureux jusqu'à la fin des temps! Fin.
