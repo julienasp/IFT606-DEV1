@@ -36,12 +36,12 @@ while True:
 
         # Receive the data in small chunks and retransmit it
         while True:
-            encryptedData = connection.recv(1024)
+            encryptedData = connection.recv(2048)
             print 'Server: received the encrypted message: "%s"' % encryptedData
             if encryptedData:
                 print 'Server: is decrypting the message...'
                 decrypted = key.decrypt(str(encryptedData))
-                print'Server: decrypted data is: %s' % decrypted
+                print 'Server: decrypted data is: %s' % decrypted
             else:
                 print 'Server: no more data from', client_address
                 break
